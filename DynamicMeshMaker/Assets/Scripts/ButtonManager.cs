@@ -4,8 +4,8 @@ using System.IO;
 
 //This class manages the behavior of the button when pressed
 public class ButtonManager : MonoBehaviour {
-    [SerializeField] Sphere leftSphere;
-    [SerializeField] Sphere rightSphere;
+    [SerializeField] CreateSphere leftSphere;
+    [SerializeField] CreateSphere rightSphere;
     [SerializeField] GameObject canvasButton;
     [SerializeField] GameObject textPercent;  //magnification
     [SerializeField] GameObject textHorizontalLeftPixel;  //Center pixel left x
@@ -36,54 +36,54 @@ public class ButtonManager : MonoBehaviour {
             canvasButton.SetActive(!canvasButton.activeSelf);
         }
 
-        textPercent.GetComponent<Text>().text = leftSphere.GetComponent<Sphere>().enlarge.ToString();
-        textHorizontalLeftPixel.GetComponent<Text>().text = leftSphere.GetComponent<Sphere>().centerPixelPos.x.ToString();
-        textVerticalLeftPixel.GetComponent<Text>().text = leftSphere.GetComponent<Sphere>().centerPixelPos.y.ToString();
-        textHorizontalRightPixel.GetComponent<Text>().text = rightSphere.GetComponent<Sphere>().centerPixelPos.x.ToString();
-        textVerticalRightPixel.GetComponent<Text>().text = rightSphere.GetComponent<Sphere>().centerPixelPos.y.ToString();
+        textPercent.GetComponent<Text>().text = leftSphere.GetComponent<CreateSphere>().enlarge.ToString();
+        textHorizontalLeftPixel.GetComponent<Text>().text = leftSphere.GetComponent<CreateSphere>().centerPixelPos.x.ToString();
+        textVerticalLeftPixel.GetComponent<Text>().text = leftSphere.GetComponent<CreateSphere>().centerPixelPos.y.ToString();
+        textHorizontalRightPixel.GetComponent<Text>().text = rightSphere.GetComponent<CreateSphere>().centerPixelPos.x.ToString();
+        textVerticalRightPixel.GetComponent<Text>().text = rightSphere.GetComponent<CreateSphere>().centerPixelPos.y.ToString();
     }
 
     public void EnlargePlus() {
-        leftSphere.GetComponent<Sphere>().enlarge++;
-        rightSphere.GetComponent<Sphere>().enlarge++;
+        leftSphere.GetComponent<CreateSphere>().enlarge++;
+        rightSphere.GetComponent<CreateSphere>().enlarge++;
     }
 
     public void EnlargeMinus() {
-        leftSphere.GetComponent<Sphere>().enlarge--;
-        rightSphere.GetComponent<Sphere>().enlarge--;
+        leftSphere.GetComponent<CreateSphere>().enlarge--;
+        rightSphere.GetComponent<CreateSphere>().enlarge--;
     }
 
     public void HorizontalLeftPixelPlus() {
-        leftSphere.GetComponent<Sphere>().centerPixelPos.x++;
+        leftSphere.GetComponent<CreateSphere>().centerPixelPos.x++;
     }
 
     public void HorizontalLeftPixelMinus() {
-        leftSphere.GetComponent<Sphere>().centerPixelPos.x--;
+        leftSphere.GetComponent<CreateSphere>().centerPixelPos.x--;
     }
 
     public void VerticalLeftPixelPlus() {
-        leftSphere.GetComponent<Sphere>().centerPixelPos.y++;
+        leftSphere.GetComponent<CreateSphere>().centerPixelPos.y++;
     }
 
     public void VerticalLeftPixelMinus() {
-        leftSphere.GetComponent<Sphere>().centerPixelPos.y--;
+        leftSphere.GetComponent<CreateSphere>().centerPixelPos.y--;
     }
 
 
     public void HorizontalRightPixelPlus() {
-        rightSphere.GetComponent<Sphere>().centerPixelPos.x++;
+        rightSphere.GetComponent<CreateSphere>().centerPixelPos.x++;
     }
 
     public void HorizontalRightPixelMinus() {
-        rightSphere.GetComponent<Sphere>().centerPixelPos.x--;
+        rightSphere.GetComponent<CreateSphere>().centerPixelPos.x--;
     }
 
     public void VerticalRightPixelPlus() {
-        rightSphere.GetComponent<Sphere>().centerPixelPos.y++;
+        rightSphere.GetComponent<CreateSphere>().centerPixelPos.y++;
     }
 
     public void VerticalRightPixelMinus() {
-        rightSphere.GetComponent<Sphere>().centerPixelPos.y--;
+        rightSphere.GetComponent<CreateSphere>().centerPixelPos.y--;
     }
 
     public void LoadData() {
@@ -106,20 +106,20 @@ public class ButtonManager : MonoBehaviour {
 
             switch (splits[0]) {
                 case "Enlargement":
-                    leftSphere.GetComponent<Sphere>().enlarge = tryInt;
-                    rightSphere.GetComponent<Sphere>().enlarge = tryInt;
+                    leftSphere.GetComponent<CreateSphere>().enlarge = tryInt;
+                    rightSphere.GetComponent<CreateSphere>().enlarge = tryInt;
                     break;
                 case "CenterPixelPosLeftX":
-                    leftSphere.GetComponent<Sphere>().centerPixelPos.x = tryInt;
+                    leftSphere.GetComponent<CreateSphere>().centerPixelPos.x = tryInt;
                     break;
                 case "CenterPixelPosLeftY":
-                    leftSphere.GetComponent<Sphere>().centerPixelPos.y = tryInt;
+                    leftSphere.GetComponent<CreateSphere>().centerPixelPos.y = tryInt;
                     break;
                 case "CenterPixelPosRightX":
-                    rightSphere.GetComponent<Sphere>().centerPixelPos.x = tryInt;
+                    rightSphere.GetComponent<CreateSphere>().centerPixelPos.x = tryInt;
                     break;
                 case "CenterPixelPosRightY":
-                    rightSphere.GetComponent<Sphere>().centerPixelPos.y = tryInt;
+                    rightSphere.GetComponent<CreateSphere>().centerPixelPos.y = tryInt;
                     break;
                 default:
                     break;
@@ -146,11 +146,11 @@ public class ButtonManager : MonoBehaviour {
             MakeButton(saveName);
         }
 
-        writer.WriteLine("Enlargement:" + leftSphere.GetComponent<Sphere>().enlarge.ToString());
-        writer.WriteLine("CenterPixelPosLeftX:" + leftSphere.GetComponent<Sphere>().centerPixelPos.x.ToString());
-        writer.WriteLine("CenterPixelPosLeftY:" + leftSphere.GetComponent<Sphere>().centerPixelPos.y.ToString());
-        writer.WriteLine("CenterPixelPosRightX:" + rightSphere.GetComponent<Sphere>().centerPixelPos.x.ToString());
-        writer.Write("CenterPixelPosRightY:" + rightSphere.GetComponent<Sphere>().centerPixelPos.y.ToString());
+        writer.WriteLine("Enlargement:" + leftSphere.GetComponent<CreateSphere>().enlarge.ToString());
+        writer.WriteLine("CenterPixelPosLeftX:" + leftSphere.GetComponent<CreateSphere>().centerPixelPos.x.ToString());
+        writer.WriteLine("CenterPixelPosLeftY:" + leftSphere.GetComponent<CreateSphere>().centerPixelPos.y.ToString());
+        writer.WriteLine("CenterPixelPosRightX:" + rightSphere.GetComponent<CreateSphere>().centerPixelPos.x.ToString());
+        writer.Write("CenterPixelPosRightY:" + rightSphere.GetComponent<CreateSphere>().centerPixelPos.y.ToString());
 
         writer.Close();
     }
