@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CamAdjuster : MonoBehaviour {
     public Vector3 basePos = Vector3.zero;
 
-    //ジャイロを有効にするかどうか
     public bool gyro = true;
 
     public GameObject[] GyroKill;
@@ -16,7 +14,7 @@ public class CamAdjuster : MonoBehaviour {
     }
 
     void Update() {
-        // VR.InputTracking から hmd の位置を取得
+        //Get HMD position from VR.InputTracking
         var trackingPos = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.CenterEye);
 
         var scale = transform.localScale;
@@ -26,17 +24,12 @@ public class CamAdjuster : MonoBehaviour {
             trackingPos.z * scale.z
         );
 
-        // 回転
         trackingPos = transform.rotation * trackingPos;
 
-        // 固定したい位置から hmd の位置を
-        // 差し引いて実質 hmd の移動を無効化する
+        //Deactivate HMD movement by subtracting the fixed position
         transform.position = basePos - trackingPos;
 
-        // 子のカメラの座標がbasePosと同じ値になるかを確認する
-        // Debug.Log(transform.GetChild(0).position);
-
-        //（チェックを入れた場合）HMDのジャイロ回転を殺す
+        //Kill HMD gyro
         if (gyro == false) {
             var trackingRot = UnityEngine.XR.InputTracking.GetLocalRotation(UnityEngine.XR.XRNode.CenterEye);
             if (GyroKill != null) {
